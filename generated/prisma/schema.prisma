@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Seller {
+  id                      Int      @id @default(autoincrement())
+  sellerEmails            String?
+  note                    String?
+  collectionExcluded      String?
+  name                    String?
+  primaryCategoryId       Int?
+  primaryCategoryIdString String?
+  primarySubCategoryId    Int?
+  stateFromMerchant       String?
+  whoIsRecord             String?
+  legalName               String?
+  disposition             String?
+  marketplace             String
+  qualifiedBrands         String?
+  brandOwnership          String?
+  singleBrand             String?
+  brandNameMatch          String?
+  closeBrand              String?
+  checkedForEmails        String?
+  haveEmails              String?
+  email                   String?
+  contactedDate           String?
+  contacted               String?
+  profilingStatus         String?
+  confirmedEmail          String?
+  phone                   String?
+  confirmedPhone          String?
+  confirmedRealWorldName  String?
+  lastUpdated             String?
+  dateUpdated             String?
+  primaryCategory         String?
+  primarySubCategory      String?
+  businessName            String?
+  amazonSellerId          String?
+  estimateSales           Float?
+  avgPrice                Float?
+  percentFba              Float?
+  numberReviewsLifetime   Int?
+  numberReviews30Days     Int?
+  numberWinningBrands     Int?
+  numberAsins             Int?
+  numberTopAsins          Int?
+  street                  String?
+  city                    String?
+  state                   String?
+  country                 String?
+  zipCode                 String?
+  numBrands1000           Int?
+  moMGrowth               Float?
+  threeMonthGrowth        Float?
+  sixMonthGrowth          Float?
+  yearGrowth              Float?
+  moMGrowthCount          Int?
+  sixMonthGrowthCount     Int?
+  isSuspended             String?
+  lastSuspendedDate       String?
+  startedSellingDate      String?
+  // ScrapedMarketplace        String?
+  dateScraped             DateTime @default(now())
+
+  // @@unique([amazonSellerId, marketplace])
+  @@index([marketplace])
+  @@index([primaryCategoryId])
+}
+
+model CategoryMapping {
+  id             Int    @id @default(autoincrement())
+  marketplace    String
+  categoryId     Int
+  categoryString String
+
+  @@unique([marketplace, categoryId])
+}

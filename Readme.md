@@ -1,5 +1,3 @@
----
-
 # SmartScout Scraper - Usage Guide
 
 ## 1. Setup
